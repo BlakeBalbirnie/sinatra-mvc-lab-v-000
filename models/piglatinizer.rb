@@ -1,26 +1,28 @@
-
 class PigLatinizer
-  VOWELS = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
-
-  def starts_with_vowel(word)
-    VOWELS.include?(word[0])
-  end
-
+    # word starts with vowel
   def piglatinize(word)
-    if starts_with_vowel(word)
-      piglatinized = word + 'way'
+    if !consonant?(word[0])
+      word = word + "w"
+    # word starts with 3 consonants
+    elsif consonant?(word[0]) && consonant?(word[1]) && consonant?(word[2])
+      word = word.slice(3..-1) + word.slice(0,3)
+    # word starts with 2 consonants
+    elsif consonant?(word[0]) && consonant?(word[1])
+      word = word.slice(2..-1) + word.slice(0,2)
+    # word starts with 1 consonant
     else
-      first_vowel = word.index(/[aeiou]/)
-      move_letters = word[0..(first_vowel - 1)]
-      piglatinized = word[first_vowel..-1] + move_letters + 'ay'
+      word = word.slice(1..-1) + word.slice(0)
     end
-    piglatinized
+    word << "ay"
   end
 
-  def to_pig_latin(phrase)
-    words = phrase.split
-    piglatinized = words.each.collect {|word| piglatinize(word)}
-    piglatinized.join(" ")
+  def consonant?(char)
+    !char.match(/[aAeEiIoOuU]/)
+  end
+
+  def to_pig_latin(sentence)
+    sentence.split.collect { |word| piglatinize(word) }.join(" ")
   end
 
 end
+    
