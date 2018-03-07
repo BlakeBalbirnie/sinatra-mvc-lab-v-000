@@ -8,11 +8,11 @@ class PigLatinizer
 
   def piglatinize(word)
     if starts_with_vowel(word)
-      piglatinized = word  'way'
+      piglatinized = word + 'way'
     else
       first_vowel = word.index(/[aeiou]/)
       move_letters = word[0..(first_vowel - 1)]
-      piglatinized = word[first_vowel..-1]  move_letters + 'ay'
+      piglatinized = word[first_vowel..-1] + move_letters + 'ay'
     end
     piglatinized
   end
