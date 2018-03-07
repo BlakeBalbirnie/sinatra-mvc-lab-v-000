@@ -10,5 +10,5 @@ class App < Sinatra::Base
     @piglatin = pl.to_pig_latin(params[:user_phrase])
     erb :results
   end
-  
+
 end
