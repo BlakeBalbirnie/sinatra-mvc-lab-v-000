@@ -12,7 +12,7 @@ class PigLatinizer
     else
       first_vowel = word.index(/[aeiou]/)
       move_letters = word[0..(first_vowel - 1)]
-      piglatinized = word[first_vowel..-1]  move_letters  'ay'
+      piglatinized = word[first_vowel..-1]  move_letters + 'ay'
     end
     piglatinized
   end
